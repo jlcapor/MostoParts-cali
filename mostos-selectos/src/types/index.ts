@@ -16,15 +16,17 @@ export type RoleField = {
   name: string;
 };
 
-export type UserWithRole ={
-  id: number;
-  name: string;
-  surnames: string;
-  email: string;
-  phone: string;
-  role: string | null;
-  state: string;
-}
+export type Image = {
+  url: string;
+  altText: string;
+  width: number;
+  height: number;
+};
+
+export type Menu = {
+  title: string;
+  path: string;
+};
 
 export type FileWithPreview = FileWithPath & {
   preview: string

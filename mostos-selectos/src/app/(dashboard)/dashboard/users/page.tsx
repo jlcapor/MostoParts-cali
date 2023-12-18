@@ -4,6 +4,7 @@ import { User } from "@prisma/client";
 import { Shell } from "@/components/shells/shell";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
 import { usersSearchParamsSchema } from "@/lib/validations/params";
+import Search from "@/components/search";
 
 interface UsersPageProps {
   params: {
@@ -89,6 +90,7 @@ export default async function UsersPage({
       >
         <PageHeaderHeading size="sm">Usuarios</PageHeaderHeading>
       </PageHeader>
+      <Search placeholder="Search invoices..." />
       <UsersTableShell
         data={items}
         pageCount={pageCount}

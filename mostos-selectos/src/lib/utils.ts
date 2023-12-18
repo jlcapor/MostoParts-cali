@@ -1,3 +1,5 @@
+
+import { ReadonlyURLSearchParams } from 'next/navigation';
 import { type ClassValue, clsx } from "clsx"
 import { toast } from "sonner"
 import { twMerge } from "tailwind-merge"
@@ -34,13 +36,6 @@ export function toSentenceCase(str: string) {
 }
 
 
-
-// export function isMacOs() {
-//   if (typeof window === "undefined") return false
-
-//   return window.navigator.userAgent.includes("Mac")
-// }
-
 export function formatBytes(
   bytes: number,
   decimals = 0,
@@ -61,3 +56,10 @@ export function isArrayOfFile(files: unknown): files is File[] {
   if (!isArray) return false
   return files.every((file) => file instanceof File)
 }
+
+
+export const createUrl = (pathname: string, params: URLSearchParams | ReadonlyURLSearchParams) => {
+  const paramsString = params.toString();
+  const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
+  return `${pathname}${queryString}`;
+};
