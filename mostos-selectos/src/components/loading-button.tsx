@@ -11,11 +11,12 @@ import {
 } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Icons } from "@/components/icons"
+import { useFormStatus } from "react-dom"
 
 const LoadingButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
-    // const { pending } = useFormStatus()
-    const pending = false
+    const { pending } = useFormStatus()
+    // const pending = false
     const mounted = useMounted()
 
     if (!mounted)

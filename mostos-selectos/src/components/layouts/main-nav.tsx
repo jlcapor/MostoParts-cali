@@ -10,7 +10,6 @@ export function MainNav() {
     return (
         <div className="hidden gap-6 lg:flex">
             <Link href="/" className="hidden items-center space-x-2 lg:flex">
-                <Icons.logo className="h-6 w-6" aria-hidden="true" />
                 <span className="hidden text-lg font-bold lg:inline-block">
                     Mostos Selectos
                 </span>

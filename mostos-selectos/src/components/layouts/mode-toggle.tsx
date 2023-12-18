@@ -1,20 +1,21 @@
-'use client'
+"use client"
 
-import { LaptopIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
-import { useTheme } from 'next-themes'
+import { LaptopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons"
+import { useTheme } from "next-themes"
 
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu"
 
 export function ModeToggle() {
   const { setTheme } = useTheme()
+
   return (
-    <DropdownMenu>
+    <DropdownMenu> 
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="h-8 w-8">
           <SunIcon className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -23,15 +24,15 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+        <DropdownMenuItem onClick={() => setTheme("light")}>
           <SunIcon className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
           <MoonIcon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
           <LaptopIcon className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>

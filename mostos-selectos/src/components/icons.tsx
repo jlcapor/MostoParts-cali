@@ -114,7 +114,7 @@ export const Icons = {
       <path d="M16 10a4 4 0 0 1-8 0" />
     </svg>
   ),
-  store: (props: IconProps) => (
+  user: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"

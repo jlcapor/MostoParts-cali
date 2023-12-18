@@ -52,3 +52,5 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
         </div>
     )
 }
+
+// pnpm add uploadthing @uploadthing/react
