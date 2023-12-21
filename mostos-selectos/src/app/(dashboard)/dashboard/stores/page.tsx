@@ -1,4 +1,3 @@
-import { StoreCard } from "@/components/cards/store-card";
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/page-header";
 import { Shell } from "@/components/shells/shell";
 import { buttonVariants } from "@/components/ui/button";
@@ -21,25 +20,19 @@ export default async function NewStorePage() {
                     </PageHeaderHeading>
                     <Link
                         aria-label="Create store"
-                        href={'/dashboard/headquarters/new-store'}
+                        href={'/dashboard/stores/new-store'}
                         className={cn(
                             buttonVariants({
                                 size: "sm",
                             })
                         )}
                     >
-                        Crear Sede
+                        Crear tienda
                     </Link>
                 </div>
              </PageHeader>
              <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {/* {allStores.map((store) => (
-                    <StoreCard
-                        key={store.id}
-                        store={store}
-                        href={`/dashboard/headquarters/${store.id}`}
-                  />
-                ))} */}
+               
              </section>
         </Shell>
     )

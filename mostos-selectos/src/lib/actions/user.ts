@@ -1,5 +1,5 @@
 "use server";
-import prisma from "@/db/prismadb";
+import prisma from "@/lib/prismadb";
 import { z } from "zod";
 import { getUserSchema, userSchema, userUpdateSchema } from "../validations/user";
 import { revalidatePath } from "next/cache";

@@ -1,4 +1,4 @@
-import prisma from "@/db/prismadb";
+import prisma from "@/lib/prismadb";
 import { UsersTableShell } from "@/components/shells/user-table-shell";
 import { User } from "@prisma/client";
 import { Shell } from "@/components/shells/shell";
@@ -90,7 +90,6 @@ export default async function UsersPage({
       >
         <PageHeaderHeading size="sm">Usuarios</PageHeaderHeading>
       </PageHeader>
-      <Search placeholder="Search invoices..." />
       <UsersTableShell
         data={items}
         pageCount={pageCount}

@@ -19,7 +19,7 @@ import { ShoppingBasket } from "../../checkout/shopping-basket"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/layouts/main-nav"
 import { MobileNav } from "@/components/layouts/mobile-nav"
-import { ProductsCommandMenu } from "@/components/products-command-menu"
+import { CommandMenu } from "@/components/command-menu"
 import { ModeToggle } from "../mode-toggle"
 
 
@@ -27,7 +27,7 @@ import { ModeToggle } from "../mode-toggle"
 export async function SiteHeader() {
  
 return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
+  <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
           <MainNav/>
           <MobileNav
@@ -36,7 +36,7 @@ return (
             <div className="flex flex-1 items-center justify-end space-x-4">
               <nav className="flex items-center space-x-2">
                   <ModeToggle />
-                  <ProductsCommandMenu />
+                  <CommandMenu />
                   <ShoppingBasket/>
                   {/* {user ? (
                     <DropdownMenu>

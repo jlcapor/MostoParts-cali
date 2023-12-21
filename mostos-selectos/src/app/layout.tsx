@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/toaster'
 import { fontHeading, fontMono, fontSans } from '@/lib/fonts'
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { Analytics } from "@/components/analytics"
-import { redirect } from "next/navigation"
+import { Providers } from "./providers"
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
@@ -29,26 +29,33 @@ export default async function RootLayout({
 }) {
   
   return (
-        <html lang="en" suppressHydrationWarning>
-        <head />
+    
+      <html lang="en" suppressHydrationWarning>
+      
         <body  
           className={cn("min-h-screen bg-background font-sans antialiased",
             fontSans.variable,
             fontMono.variable,
             fontHeading.variable
         )}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <TailwindIndicator />
-            <Analytics />
-          </ThemeProvider>
-          <Toaster />
+          <Providers>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <TailwindIndicator />
+              <Analytics />
+            </ThemeProvider>
+            <Toaster />
+          </Providers>
+            
         </body>
-        </html>
+        
+       
+      </html>
+   
   )
 }

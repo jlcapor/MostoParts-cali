@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "Status" AS ENUM ('ACTIVO', 'INACTIVO');
 
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -39,6 +42,7 @@ CREATE TABLE "User" (
     "phone" TEXT,
     "image" TEXT,
     "hashedPassword" TEXT,
+    "role" "Role" NOT NULL DEFAULT 'USER',
     "roleId" INTEGER NOT NULL,
     "state" "Status" NOT NULL DEFAULT 'ACTIVO',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -60,23 +64,15 @@ CREATE TABLE "VerificationToken" (
 );
 
 -- CreateTable
-CREATE TABLE "Role" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-    "state" "Status" NOT NULL DEFAULT 'ACTIVO',
-
-    CONSTRAINT "Role_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Product" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
+    "reference" TEXT NOT NULL,
     "stock" INTEGER NOT NULL,
     "rating" INTEGER NOT NULL DEFAULT 0,
-    "subcategoryId" INTEGER NOT NULL,
+    "subcategoryId" UUID NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -85,7 +81,7 @@ CREATE TABLE "Product" (
 
 -- CreateTable
 CREATE TABLE "Image_Producto" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
     "url" TEXT NOT NULL,
     "productoId" UUID NOT NULL,
@@ -95,16 +91,16 @@ CREATE TABLE "Image_Producto" (
 
 -- CreateTable
 CREATE TABLE "Subcategory" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
-    "categoryId" INTEGER NOT NULL,
+    "categoryId" UUID NOT NULL,
 
     CONSTRAINT "Subcategory_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Category" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
@@ -130,9 +126,6 @@ ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_subcategoryId_fkey" FOREIGN KEY ("subcategoryId") REFERENCES "Subcategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

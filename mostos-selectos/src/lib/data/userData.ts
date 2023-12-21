@@ -1,4 +1,4 @@
-import prisma from "@/db/prismadb";
+import prisma from "@/lib/prismadb";
 const ITEMS_PER_PAGE = 6;
 
 export async function fetchFilteredUsers(query: string, currentPage: number) {

@@ -1,11 +1,10 @@
 import * as React from "react"
-import { type Option } from "@/types"
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons"
-import { type Column } from "@tanstack/react-table"
+import { Column } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Badge } from "../ui/badge"
+import { Button } from "../ui/button"
 import {
   Command,
   CommandEmpty,
@@ -14,37 +13,37 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command"
+} from "../ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { Separator } from "@/components/ui/separator"
+} from "../ui/popover"
+import { Separator } from "../ui/separator"
 
-interface DataTableFacetedFilter<TData, TValue> {
+interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>
   title?: string
-  options: Option[]
+  options: {
+    label: string
+    value: string
+    icon?: React.ComponentType<{ className?: string }>
+  }[]
 }
 
 export function DataTableFacetedFilter<TData, TValue>({
   column,
   title,
   options,
-}: DataTableFacetedFilter<TData, TValue>) {
+}: DataTableFacetedFilterProps<TData, TValue>) {
+  const facets = column?.getFacetedUniqueValues()
   const selectedValues = new Set(column?.getFilterValue() as string[])
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
-          aria-label="Filter rows"
-          variant="outline"
-          size="sm"
-          className="h-8 border-dashed"
-        >
-          <PlusCircledIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+        <Button variant="outline" size="sm" className="h-8 border-dashed">
+          <PlusCircledIcon className="mr-2 h-4 w-4" />
           {title}
           {selectedValues?.size > 0 && (
             <>
@@ -112,15 +111,17 @@ export function DataTableFacetedFilter<TData, TValue>({
                           : "opacity-50 [&_svg]:invisible"
                       )}
                     >
-                      <CheckIcon className={cn("h-4 w-4")} aria-hidden="true" />
+                      <CheckIcon className={cn("h-4 w-4")} />
                     </div>
                     {option.icon && (
-                      <option.icon
-                        className="mr-2 h-4 w-4 text-muted-foreground"
-                        aria-hidden="true"
-                      />
+                      <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
                     )}
                     <span>{option.label}</span>
+                    {facets?.get(option.value) && (
+                      <span className="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs">
+                        {facets.get(option.value)}
+                      </span>
+                    )}
                   </CommandItem>
                 )
               })}

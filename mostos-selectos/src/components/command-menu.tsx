@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 // import { type Product } from "@/db/schema"
 import { CircleIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
 
-import { catchError, cn } from "@/lib/utils"
+import { catchError, cn, isMacOs } from "@/lib/utils"
 import { useDebounce } from "@/hooks/use-debounce"
 import { Button } from "@/components/ui/button"
 import {
@@ -24,7 +24,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 //   products: Pick<Product, "id" | "name" | "category">[]
 // }
 
-export function ProductsCommandMenu() {
+export function CommandMenu() {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
   const [query, setQuery] = React.useState("")
@@ -84,6 +84,15 @@ export function ProductsCommandMenu() {
         <MagnifyingGlassIcon className="h-4 w-4 xl:mr-2" aria-hidden="true" />
         <span className="hidden xl:inline-flex">Search products...</span>
         <span className="sr-only">Search products</span>
+        <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 xl:flex">
+          <abbr
+            title={isMacOs() ? "Command" : "Control"}
+            className="no-underline"
+          >
+            {isMacOs() ? "⌘" : "Ctrl"}
+          </abbr>
+          K
+        </kbd>
       </Button>
       <CommandDialog position="top" open={open} onOpenChange={setOpen}>
         <CommandInput

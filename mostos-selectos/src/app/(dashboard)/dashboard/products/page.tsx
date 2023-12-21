@@ -1,13 +1,13 @@
 import { PageHeader, PageHeaderHeading } from "@/components/page-header"
 import { Shell } from "@/components/shells/shell"
 
-interface ProductsPageProps {
-    searchParams: {
-      [key: string]: string | string[] | undefined
-    }
-}
 
-export default async function ProductsPage({searchParams}: ProductsPageProps) {
+export default async function ProductsPage({searchParams}: {
+    searchParams?: {
+      query?: string;
+      page?: string;
+    };
+  }) {
 
     return (
         <Shell variant="sidebar">
@@ -17,6 +17,7 @@ export default async function ProductsPage({searchParams}: ProductsPageProps) {
             >
                 <PageHeaderHeading size="sm">Productos</PageHeaderHeading>
             </PageHeader>
+            
         </Shell>
     )
 }
