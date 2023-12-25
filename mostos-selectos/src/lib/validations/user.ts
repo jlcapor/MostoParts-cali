@@ -3,7 +3,7 @@ import * as z from "zod";
 export const userSchema = z.object({
     id: z.string().optional(),
     name: z.string().refine((data) => !!data, { message: "El nombre es obligatorio" }),
-    surnames: z.string().refine((data) => !!data, { message: "El apellido es obligatorio" }),
+    surname: z.string().refine((data) => !!data, { message: "El apellido es obligatorio" }),
     email: z.string().email({message: "Por favor, introduce una dirección de correo electrónico válida"}),
     phone: z .string()
     .refine((value) => {

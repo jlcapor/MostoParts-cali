@@ -36,7 +36,7 @@ type Inputs = z.infer<typeof userSchema>
             defaultValues: {
                 id: '',
                 name: '',
-                surnames: '',
+                surname: '',
                 email: '',
                 phone: '',
                 password: '',
@@ -78,7 +78,7 @@ type Inputs = z.infer<typeof userSchema>
 
                             <div className="mb-4">
                                 <div className="relative mt-2 rounded-md">
-                                    <FormField control={form.control} name="surnames" render={({ field })=> (
+                                    <FormField control={form.control} name="surname" render={({ field })=> (
                                         <FormItem>
                                             <FormLabel>Apellidos</FormLabel>
                                             <FormControl>
