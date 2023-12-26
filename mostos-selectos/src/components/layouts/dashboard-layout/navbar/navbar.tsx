@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { PowerIcon } from "@heroicons/react/24/outline";
+import UserMenu from "./UserMenu";
+import { SafeUser } from "@/types";
+interface NavbarProps {
+    currentUser?: SafeUser | null;
+  }
+const NavBar: React.FC<NavbarProps> = ({currentUser}) => {
 
-export default function NavBar() {
     return (
         <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -21,15 +26,14 @@ export default function NavBar() {
                             </div>
                         </Link>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex flex-row items-center justify-betweengap-3md:gap-0">
                         {/* Search mobile */}
-                        <Link href={''} className="hidden sm:inline-flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-bold rounded-lg text-sm  px-5 py-2.5 text-center items-center mr-3">
-                            <PowerIcon className="w-6 mx-1"/>
-                            <div className="hidden md:block">Sign Out</div>
-                        </Link>
+                        <UserMenu currentUser={currentUser} />
                     </div>
                 </div>
             </div>
         </nav>
     )
 }
+
+export default NavBar;

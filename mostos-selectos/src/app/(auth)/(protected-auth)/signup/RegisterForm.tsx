@@ -8,11 +8,12 @@ import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { authSchema } from '@/lib/validations/auth'
 import axios from 'axios'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
+import { signIn } from 'next-auth/react'
 
 type Inputs = z.infer<typeof authSchema>
 const RegisterForm = () => {
@@ -21,6 +22,7 @@ const RegisterForm = () => {
   const form = useForm<Inputs>({
     resolver: zodResolver(authSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -30,7 +32,21 @@ const RegisterForm = () => {
     setIsLoading(true)
     axios.post('/api/register', data)
     .then(() => {
-      toast.success('Registered!');
+      signIn('credentials', { 
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      })
+      .then((callback) => {
+        if (callback?.ok) {
+          toast.success('Logged in');
+          router.refresh();
+        }
+
+        if (callback?.error) {
+          toast.error(callback.error);
+        }
+      });
     })
     .catch((error) => {
       toast.error(error);
@@ -51,6 +67,19 @@ const RegisterForm = () => {
         onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
       >
         <FormField
+           control={form.control}
+           name="name"
+           render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nombre</FormLabel>
+              <FormControl>
+                <Input placeholder="" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+           )}
+        />
+        <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
@@ -59,6 +88,7 @@ const RegisterForm = () => {
               <FormControl>
                 <Input placeholder="rodneymullen180@gmail.com" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -71,6 +101,7 @@ const RegisterForm = () => {
               <FormControl>
                 <PasswordInput placeholder="**********" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
            )}
         />

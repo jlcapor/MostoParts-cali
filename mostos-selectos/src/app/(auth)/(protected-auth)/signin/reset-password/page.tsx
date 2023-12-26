@@ -8,7 +8,7 @@ const page = () => {
     <Shell className="max-w-2xl">
       <Card>
         <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Reset password</CardTitle>
+            <CardTitle className="text-2xl uppercase">Restablecer la contraseña</CardTitle>
             <CardDescription>
             Ingresa tu dirección de correo electrónico y te enviaremos un código de verificación.
             </CardDescription>

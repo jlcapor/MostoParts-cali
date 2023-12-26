@@ -21,11 +21,8 @@ export async function addUserAction(rawInput: z.infer<typeof userSchema>) {
   await prisma.user.create({
     data: {
       name: input.name,
-      surnames: input.surnames,
       email: input.email,
-      phone: input.phone as string,
-      password: input.password,
-      roleId: Number(input.roleId),
+      hashedPassword: input.password,
       state: input.state as Status
     }
   })
@@ -48,19 +45,13 @@ export async function updateUserAction(inputs: z.infer<typeof userUpdateSchema>)
  
   const updateData: {
     name: string;
-    surnames: string;
     email: string;
-    phone: string;
-    password: string;
-    roleId: number;
+    hashedPassword: string;
     state: Status;
   } = {
     name: inputs.name !== "" ? inputs.name : currentUser?.name ?? "",
-    surnames: inputs.surnames !== "" ? inputs.surnames : currentUser?.surnames ?? "",
     email: inputs.email !== "" ? inputs.email : currentUser?.email ?? "",
-    phone: inputs.phone !== "" ? inputs.phone : currentUser?.phone ?? "",
-    password: inputs.password !== "" ? inputs.password : currentUser?.password ?? "",
-    roleId: Number(inputs.roleId),
+    hashedPassword: inputs.password !== "" ? inputs.password : currentUser?.hashedPassword ?? "",
     state: inputs.state as Status,
   };
 

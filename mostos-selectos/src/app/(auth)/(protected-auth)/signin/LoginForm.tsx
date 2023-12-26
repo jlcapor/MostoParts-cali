@@ -1,21 +1,22 @@
 'use client'
+import React from 'react'
+import { signIn } from 'next-auth/react';
 import { authSchema } from '@/lib/validations/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { z } from 'zod'
-import React from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
+import { toast } from 'sonner';
 
 type Inputs = z.infer<typeof authSchema>
 const LoginForm = () => {
   const router = useRouter()
-  const [isPending, startTransition] = React.useTransition()
-
+  const [isLoading, setIsLoading] = React.useState(false);
   const form = useForm<Inputs>({
     resolver: zodResolver(authSchema),
     defaultValues: {
@@ -24,10 +25,25 @@ const LoginForm = () => {
     },
   })
 
-  const onSubmit:SubmitHandler<FieldValues> = (data)=>{
-   
-    
-  }
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setIsLoading(true);
+
+    signIn('credentials', { 
+      ...data, 
+      redirect: false,
+    })
+    .then((callback) => {
+      setIsLoading(false);
+      if (callback?.ok) {
+        toast.success('Logged in');
+        router.refresh();
+      }
+      
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
+  };
   
   return (
     <Form {...form}>
@@ -61,21 +77,19 @@ const LoginForm = () => {
           )}
         />
 
-        <Button disabled={isPending}>
-          {isPending && (
+        <Button disabled={isLoading}>
+          {isLoading && (
             <Icons.spinner
-              className="mr-2 h-4 w-4 animate-spin"
+              className="mr-2 h-4 w-4 animate-spin uppercase"
               aria-hidden="true"
             />
           )}
-          Continue
+          Iniciar sesion
           <span className="sr-only">Continue to email verification page</span>
         </Button>
       </form>
+      
     </Form>
-    // <div  className="grid w-full max-w-2xl gap-5">
-     
-    // </div>
   )
 }
 

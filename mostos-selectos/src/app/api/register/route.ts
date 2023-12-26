@@ -7,8 +7,7 @@ import prisma from '@/lib/prismadb';
 export async function POST(request: Request) {
     const body = await request.json();
     const {
-        name, 
-        surname, 
+        name,
         email, 
         password
     } = body;
@@ -16,7 +15,6 @@ export async function POST(request: Request) {
     const newRegister = await prisma.user.create({
         data:{
             name,
-            surname,
             email,
             hashedPassword
         }

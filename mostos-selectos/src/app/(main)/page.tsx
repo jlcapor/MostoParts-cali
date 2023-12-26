@@ -1,36 +1,38 @@
+import { Icons } from "@/components/icons";
+import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/page-header";
 import { Shell } from "@/components/shells/shell";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import Balancer from "react-wrap-balancer";
 
 export default  function IndexPage() {
     return (
-        <div className="flex min-h-screen flex-col items-center sm:px-5 sm:pt-[calc(20vh)]">
-          <a
-            href="https://github.com/steven-tey/novel"
-            target="_blank"
-            className="absolute bottom-5 left-5 z-10 max-h-fit rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto sm:top-5"
+      <Shell className="max-w-6xl pt-0 md:pt-0">
+      <section
+        id="hero"
+        aria-labelledby="hero-heading"
+        className="mx-auto flex w-full max-w-[64rem] flex-col items-center justify-center gap-4 py-12 text-center md:pt-32"
+      >
+    
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link href="/products" className={cn(buttonVariants())}>
+            Buy now
+            <span className="sr-only">Buy now</span>
+          </Link>
+          <Link
+            href="/dashboard/stores"
+            className={cn(
+              buttonVariants({
+                variant: "outline",
+              })
+            )}
           >
-          </a>
-          <table className="border-collapse border border-slate-400 ...">
-  <thead>
-    <tr>
-      <th className="border border-slate-300 ...">State</th>
-      <th className="border border-slate-300 ...">City</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td className="border border-slate-300 ...">Indiana</td>
-      <td className="border border-slate-300 ...">Indianapolis</td>
-    </tr>
-    <tr>
-      <td className="border border-slate-300 ...">Ohio</td>
-      <td className="border border-slate-300 ...">Columbus</td>
-    </tr>
-    <tr>
-      <td className="border border-slate-300 ...">Michigan</td>
-      <td className="border border-slate-300 ...">Detroit</td>
-    </tr>
-  </tbody>
-</table>
+            Sell now
+            <span className="sr-only">Sell now</span>
+          </Link>
         </div>
-      );
-    }
+      </section>
+      </Shell>
+  );
+}

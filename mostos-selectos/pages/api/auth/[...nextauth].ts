@@ -13,6 +13,7 @@ export const authOptions: AuthOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
         }),
+        
 
         CredentialsProvider({
             name: 'credentials',
@@ -55,8 +56,7 @@ export const authOptions: AuthOptions = {
         })
     ],
     pages: {
-        signIn: '/login',
-        // signOut: '/signout'
+        signIn: '/signin',
     },
     debug: process.env.NODE_ENV === 'development',
     session: {

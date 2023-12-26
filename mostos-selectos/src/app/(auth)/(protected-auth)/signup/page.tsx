@@ -1,19 +1,19 @@
-import Container from '@/components/Container'
-import FormWrap from '@/components/FormWrap'
 import React from 'react'
 import RegisterForm from './RegisterForm'
 import { Shell } from '@/components/shells/shell'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
+import { OAuthSignIn } from '@/components/auth/oauth-signin'
 
 const page = () => {
   return (
-    <Shell className="max-w-2xl">
+     <Shell className="max-w-lg">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center uppercase">Crear una cuenta</CardTitle>
+          <CardTitle className="text-2xl ">Crear una cuenta</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
+          <OAuthSignIn/>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />

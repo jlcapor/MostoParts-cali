@@ -9,16 +9,11 @@ export async function fetchFilteredUsers(query: string, currentPage: number) {
       select: {
         id: true,
         name: true,
-        surnames: true,
+        surname: true,
         email: true,
         phone: true,
         state: true,
-        role: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
+        role: true
       },
       where: {
         OR: [
@@ -29,7 +24,7 @@ export async function fetchFilteredUsers(query: string, currentPage: number) {
             },
           },
           {
-            surnames: {
+            surname: {
               contains: query,
               mode: "insensitive",
             },
@@ -77,7 +72,7 @@ export async function fetchUsersPagesAction(query: string) {
       where: {
         OR: [
           { name: { contains: query, mode: "insensitive" } },
-          { surnames: { contains: query, mode: "insensitive" } },
+          { surname: { contains: query, mode: "insensitive" } },
           { email: { contains: query, mode: "insensitive" } },
         ],
       },
@@ -107,13 +102,13 @@ export async function fetchUserById(userId: string) {
 
 export async function fetchRoles() {
   try {
-    const roles = await prisma.role.findMany({
-      select: {
-        id: true,
-        name: true,
-      },
-    });
-    return roles;
+    // const roles = await prisma.role.findMany({
+    //   select: {
+    //     id: true,
+    //     name: true,
+    //   },
+    // });
+    return null;
   } catch (err) {
     throw new Error("Failed to fetch all roles.");
   }

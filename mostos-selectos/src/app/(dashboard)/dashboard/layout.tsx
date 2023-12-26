@@ -4,11 +4,11 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { SidebarNav } from "@/components/layouts/sidebar-nav"
 import { SiteHeader } from "@/components/layouts/site-layout/site-header"
 import { SiteFooter } from "@/components/layouts/site-layout/site-footer"
+import { getSession } from "next-auth/react"
 
 export default async function DashboardLayout({
   children,
 }: React.PropsWithChildren) {
-  
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader/>

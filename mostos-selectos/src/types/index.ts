@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons"
+import { User } from "@prisma/client"
 import { type FileWithPath } from "react-dropzone"
 
 export interface NavItem {
@@ -65,6 +66,16 @@ export interface StoredFile {
   name: string
   url: string
 }
+
+
+export type SafeUser = Omit<
+  User,
+  "createdAt" | "updatedAt" | "emailVerified"
+> & {
+  createdAt: string;
+  updatedAt: string;
+  emailVerified: string | null;
+};
 
 
 
