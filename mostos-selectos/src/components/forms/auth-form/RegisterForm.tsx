@@ -13,7 +13,6 @@ import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
-import { signIn } from 'next-auth/react'
 
 type Inputs = z.infer<typeof authSchema>
 const RegisterForm = () => {
@@ -32,21 +31,7 @@ const RegisterForm = () => {
     setIsLoading(true)
     axios.post('/api/register', data)
     .then(() => {
-      signIn('credentials', { 
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      })
-      .then((callback) => {
-        if (callback?.ok) {
-          toast.success('Logged in');
-          router.refresh();
-        }
-
-        if (callback?.error) {
-          toast.error(callback.error);
-        }
-      });
+      toast.success('Registered!');
     })
     .catch((error) => {
       toast.error(error);

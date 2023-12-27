@@ -27,9 +27,9 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
-
     signIn('credentials', { 
-      ...data, 
+      email: data.email,
+      password: data.password,
       redirect: false,
     })
     .then((callback) => {

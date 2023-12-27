@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterForm from './RegisterForm'
+import RegisterForm from '../../../../components/forms/auth-form/RegisterForm'
 import { Shell } from '@/components/shells/shell'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'

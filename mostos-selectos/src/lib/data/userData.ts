@@ -9,9 +9,7 @@ export async function fetchFilteredUsers(query: string, currentPage: number) {
       select: {
         id: true,
         name: true,
-        surname: true,
         email: true,
-        phone: true,
         state: true,
         role: true
       },
@@ -19,12 +17,6 @@ export async function fetchFilteredUsers(query: string, currentPage: number) {
         OR: [
           {
             name: {
-              contains: query,
-              mode: "insensitive",
-            },
-          },
-          {
-            surname: {
               contains: query,
               mode: "insensitive",
             },
@@ -72,7 +64,6 @@ export async function fetchUsersPagesAction(query: string) {
       where: {
         OR: [
           { name: { contains: query, mode: "insensitive" } },
-          { surname: { contains: query, mode: "insensitive" } },
           { email: { contains: query, mode: "insensitive" } },
         ],
       },

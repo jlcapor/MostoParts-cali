@@ -9,12 +9,10 @@ import { SafeUser } from '@/types'
 interface UserMenuProps {
   currentUser?: SafeUser | null
 }
-const UserMenu: React.FC<UserMenuProps> = ({
-  currentUser
-}) => {
+const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
     const [isOpen, setIsOpen] = useState(false)
     const toggleOpen = useCallback(()=>{
-        setIsOpen(prev=>!prev);
+      setIsOpen(prev=>!prev);
     }, [])
   return (
     <>
@@ -52,13 +50,15 @@ const UserMenu: React.FC<UserMenuProps> = ({
             cursor-pointer
           '
           >
-            <div>
+            {currentUser ? (
+              <div>
               <Link href='/orders'>
                 <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
               </Link>
               <Link href='/admin'>
                 <MenuItem onClick={toggleOpen}>Dashboard</MenuItem>
               </Link>
+              <hr/>
               <MenuItem onClick={()=>{
                 toggleOpen()
                 signOut()
@@ -66,7 +66,8 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 Logout
               </MenuItem>
             </div>
-            <div>
+            ) : (
+              <div>
               <Link href='/login'>
                 <MenuItem onClick={toggleOpen}>
                   Iniciar sesion
@@ -78,6 +79,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 </MenuItem>
               </Link>
             </div>
+            )}
           </div>
         )}
       </div>

@@ -15,13 +15,12 @@ export function OAuthSignIn() {
   const { status } = useSession();
   const oauthProviders: OAuthProvider[] = [
     { name: 'Google', icon: 'google', id: 'google' },
-    { name: 'Facebook', icon: 'facebook', id: 'facebook' },
-    { name: 'GitHub', icon: 'gitHub', id: 'gitHub' },
+    
   ];
 
   const oauthSignIn = async (providerId: string) => {
     try {
-      await signIn(providerId);
+      await signIn(providerId, { callbackUrl: '/' });
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : undefined;
         const errorMessageToShow = errorMessage || 'Something went wrong, please try again.';
@@ -30,7 +29,8 @@ export function OAuthSignIn() {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
+    // <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
+    <div className="flex flex-col gap-4 mt-3">
       {oauthProviders.map((provider) => {
         const Icon = Icons[provider.icon];
 

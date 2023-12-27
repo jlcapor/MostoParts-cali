@@ -47,9 +47,8 @@ export default async function RootLayout({
               <TailwindIndicator />
               <Analytics />
             </ThemeProvider>
-            <Toaster />
           </Providers>
-            
+          <Toaster />
         </body>
       </html>
    
