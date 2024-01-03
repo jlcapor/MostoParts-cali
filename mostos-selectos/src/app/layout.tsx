@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/toaster'
 import { fontHeading, fontMono, fontSans } from '@/lib/fonts'
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { Analytics } from "@/components/analytics"
-import { Providers } from "./providers"
+import { Providers } from "./Providers"
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
@@ -47,8 +47,8 @@ export default async function RootLayout({
               <TailwindIndicator />
               <Analytics />
             </ThemeProvider>
-          </Providers>
           <Toaster />
+          </Providers>
         </body>
       </html>
    

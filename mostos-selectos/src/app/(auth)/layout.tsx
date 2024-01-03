@@ -1,4 +1,3 @@
-import { Icons } from "@/components/icons";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +21,7 @@ export default function AuthLayout({ children }: React.PropsWithChildren) {
                 href="/"
                 className="absolute left-8 top-6 z-20 flex items-center text-lg font-bold tracking-tight"
             >
-                <Icons.logo className="mr-2 h-6 w-6" aria-hidden="true" />
+                {/* <Icons.logo className="mr-2 h-6 w-6" aria-hidden="true" /> */}
                 <span>Motos Selectos</span>
             </Link>
             <main className="container absolute mt-2 top-1/2 col-span-1 flex -translate-y-1/3 items-center md:static md:top-0 md:col-span-2 md:flex md:translate-y-0 lg:col-span-1">

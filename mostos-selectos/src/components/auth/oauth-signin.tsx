@@ -15,7 +15,6 @@ export function OAuthSignIn() {
   const { status } = useSession();
   const oauthProviders: OAuthProvider[] = [
     { name: 'Google', icon: 'google', id: 'google' },
-    
   ];
 
   const oauthSignIn = async (providerId: string) => {
