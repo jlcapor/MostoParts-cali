@@ -8,6 +8,8 @@ export const productSchema = z.object({
     price: z.string().regex(/^\d+(\.\d{1,2})?$/, {
       message: "Must be a valid price",
     }),
-    stock: z.number()
-    
+    stock: z.number(),
+    inStock: z.boolean(),
+    categoryId: z.string(),
+    subcategoryId: z.string()
 })

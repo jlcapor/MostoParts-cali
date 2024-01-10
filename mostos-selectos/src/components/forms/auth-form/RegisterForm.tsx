@@ -58,7 +58,7 @@ const RegisterForm = () => {
             <FormItem>
               <FormLabel>Nombre</FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} />
+                <Input placeholder="Nombres y Apellidos" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

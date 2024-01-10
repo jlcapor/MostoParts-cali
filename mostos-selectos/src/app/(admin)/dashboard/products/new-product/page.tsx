@@ -3,13 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default  function NewProductPage() {
     return (
-        <Card>
+       <Card>
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl">Crear Producto</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="grid gap-4">
                 <AddProductForm />
             </CardContent>
         </Card>
+      
+        
     )
 }

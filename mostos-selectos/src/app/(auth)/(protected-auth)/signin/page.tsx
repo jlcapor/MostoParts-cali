@@ -1,6 +1,6 @@
 import React from 'react'
 import LoginForm from '@/components/forms/auth-form/LoginForm'
-import { Shell } from '@/components/shells/shell'
+import { Shell } from '@/components/shell'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import { OAuthSignIn } from '@/components/auth/oauth-signin'
@@ -10,7 +10,7 @@ const LoginPage = () => {
      <Shell className="max-w-lg">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center uppercase">Autenticacion</CardTitle>
+          <CardTitle className="text-2xl text-center uppercase">Iniciar Sesión</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
           <OAuthSignIn/>
@@ -20,7 +20,7 @@ const LoginPage = () => {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
+               O inicia sesión con
               </span>
             </div>
           </div>
@@ -36,7 +36,7 @@ const LoginPage = () => {
               href="/signup"
               className="text-primary underline-offset-4 transition-colors hover:underline"
             >
-              Registrate
+              Crea tu cuenta
             </Link>
           </div>
           <Link
@@ -44,7 +44,7 @@ const LoginPage = () => {
             href="/signin/reset-password"
             className="text-sm text-primary underline-offset-4 transition-colors hover:underline"
           >
-            Restablecer la contraseña
+            ¿Olvidaste tu contraseña?
           </Link>
         </CardFooter>
       </Card>

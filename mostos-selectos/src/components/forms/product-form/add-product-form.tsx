@@ -1,5 +1,5 @@
 'use client'
-import { Form, FormControl, FormField, FormItem, FormLabel, UncontrolledFormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, UncontrolledFormMessage } from "@/components/ui/form";
 import {  useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { catchError } from "@/lib/utils";
+import { Select, SelectContent, SelectGroup, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type Inputs = z.infer<typeof productSchema>
 
@@ -21,7 +22,10 @@ export function AddProductForm() {
             name: "",
             description: "",
             price: "",
-            stock: NaN,
+            stock: undefined,
+            inStock: true,
+            categoryId: '',
+            subcategoryId: ''
         }
     })
 
@@ -39,7 +43,7 @@ export function AddProductForm() {
     return (
         <Form {...form}>
             <form
-              className="grid w-full max-w-2xl gap-5"
+              className="col-span-2 grid items-start gap-6 lg:col-span-1"
               onSubmit={form.handleSubmit(onSubmit)}
             >
                  <FormField
@@ -68,38 +72,103 @@ export function AddProductForm() {
                    )}
                 />
 
-                <div className="flex flex-col items-start gap-6 sm:flex-row">
-                    <FormField
+                
+                <FormField
+                    control={form.control}
+                    name="price"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Precio</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Escriba el precio del producto aqui."
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                  />
+                
+                  <FormField
                       control={form.control}
-                      name="price"
+                      name="stock"
                       render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Price</FormLabel>
+                          <FormLabel>Stock</FormLabel>
+                          <FormControl>
+                          <Input placeholder="Escriba el inventario del producto aqui." {...field} />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                  /> 
+                  <div className="flex flex-col items-start gap-6 sm:flex-row">
+                    <FormField
+                      control={form.control}
+                      name="categoryId"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormLabel>Categoria</FormLabel>
+                          <Select 
+                            value={field.value}
+                            onValueChange={(value: typeof field.value) =>
+                              field.onChange(value)
+                            }
+                          >
                             <FormControl>
-                            <Input
-                                placeholder="Type product price here."
-                                value={field.value}
-                                onChange={field.onChange}
-                            />
+                              <SelectTrigger className="capitalize">
+                                <SelectValue placeholder="Selecciona una categoria" />
+                              </SelectTrigger>
                             </FormControl>
+                            <SelectContent>
+                             <SelectGroup>
+
+                             </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
-                </div>
 
-                    <Button
-                      className="w-fit"
-                      disabled={isPending}
-                    >
-                      {isPending && (
-                        <Icons.spinner
-                          className="mr-2 h-4 w-4 animate-spin"
-                          aria-hidden="true"
+                    <FormField
+                      control={form.control}
+                      name="subcategoryId"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormLabel>Subcategoría</FormLabel>
+                          <Select
+                           value={field.value?.toString()}
+                           onValueChange={field.onChange}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                              <SelectValue placeholder="Selecciona una subcategoria" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                             <SelectGroup></SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  
+
+                  <Button
+                    className="w-fit"
+                    disabled={isPending}
+                  >
+                    {isPending && (
+                      <Icons.spinner
+                        className="mr-2 h-4 w-4 animate-spin"
+                        aria-hidden="true"
                         />
                       )}
-                      Add Product
+                      Crear
                       <span className="sr-only">Add Product</span>
-                    </Button>
+                  </Button>
             </form>
         </Form>
     )

@@ -3,7 +3,7 @@ import * as z from "zod"
 export const authSchema = z.object({
   name: z.string().refine((data) => !!data, { message: "El nombre es obligatorio" }),
   email: z.string().email({
-    message: "Por favor, introduce una dirección de correo electrónico válida",
+    message: "Por favor, ingresa una dirección de correo válida",
   }),
   password: z
     .string()
@@ -13,7 +13,7 @@ export const authSchema = z.object({
     .max(100)
     .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, {
       message:
-        "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+        "La contraseña debe contener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial",
     }),
 })
 

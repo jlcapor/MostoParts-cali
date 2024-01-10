@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { z } from 'zod'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
 import { Button } from '@/components/ui/button'
@@ -60,6 +60,7 @@ const LoginForm = () => {
               <FormControl>
                <Input placeholder="rodneymullen180@gmail.com" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -73,6 +74,7 @@ const LoginForm = () => {
               <FormControl>
                <PasswordInput placeholder="**********" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />

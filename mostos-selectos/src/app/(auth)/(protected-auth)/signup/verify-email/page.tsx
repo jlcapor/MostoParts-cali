@@ -1,4 +1,4 @@
-import { Shell } from '@/components/shells/shell'
+import { Shell } from '@/components/shell'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import React from 'react'
 import { VerifyEmailForm } from './verify-email-form'

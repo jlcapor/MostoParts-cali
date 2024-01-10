@@ -1,5 +1,5 @@
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/page-header";
-import { Shell } from "@/components/shells/shell";
+import { Shell } from "@/components/shell";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";

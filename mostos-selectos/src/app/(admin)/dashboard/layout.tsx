@@ -1,28 +1,28 @@
-import { redirect } from "next/navigation"
-import { dashboardConfig } from "@/config/dashboard"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { SidebarNav } from "@/components/layouts/sidebar-nav"
-import { SiteHeader } from "@/components/layouts/site-layout/site-header"
-import { SiteFooter } from "@/components/layouts/site-layout/site-footer"
-import { getSession } from "next-auth/react"
+import { AdminTags } from '@/components/layouts/admin/AdminTags'
+import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/page-header'
+import { Shell } from '@/components/shell'
+import React from 'react'
 
-export default async function DashboardLayout({
+const AdminLayout = ({
   children,
-}: React.PropsWithChildren) {
+}: {
+  children: React.ReactNode
+}) => {
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader/>
-      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
-        <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block">
-            <ScrollArea className="py-6 pr-6 lg:py-8">
-              <SidebarNav items={dashboardConfig.sidebarNav} className="p-1" />
-            </ScrollArea>
-        </aside>
-        <main className="flex w-full  flex-col overflow-hidden mt-8">
-          {children}
-        </main>
-      </div>
-      <SiteFooter />
+    <Shell className="container">
+    <div className="flex flex-col gap-4 pr-1 xxs:flex-row">
+      <PageHeader className="flex-1">
+        <PageHeaderHeading size="sm">Dashboard</PageHeaderHeading>
+      </PageHeader>
     </div>
-  )
+      <AdminTags/>
+      {/* min-h-screen w-full flex flex-col */}
+      <div className="space-y-8 overflow-auto">
+        {children}
+    </div>
+  </Shell>
+)
 }
+
+
+export default AdminLayout

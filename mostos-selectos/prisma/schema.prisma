@@ -1,14 +1,13 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
-
 
 enum Status {
   ACTIVO
@@ -21,17 +20,17 @@ enum Role {
 }
 
 model Account {
-  id                String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId            String  @db.Uuid
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String? @db.String
+  access_token      String? @db.String
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String? @db.String
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -39,7 +38,7 @@ model Account {
 }
 
 model User {
-  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String?
   email          String?   @unique
   emailVerified  DateTime?
@@ -53,51 +52,60 @@ model User {
   reviews        Review[]
 }
 
+model Category {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  name          String        @unique
+  subcategories Subcategory[]
+  products      Product[]
+}
+
+model Subcategory {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId String    @db.ObjectId
+  products   Product[]
+}
+
 model Product {
-  id            String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id            String           @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   description   String
   price         Float
-  reference     String
   stock         Int
+  inStock       Boolean
+  category      Category         @relation(fields: [categoryId], references: [id])
   subcategory   Subcategory      @relation(fields: [subcategoryId], references: [id])
-  subcategoryId String           @db.Uuid
+  categoryId    String           @db.ObjectId
+  subcategoryId String           @db.ObjectId
   images        Image_Producto[]
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @default(now()) @updatedAt
-  Review        Review[]
+  Reviews       Review[]
 }
 
 model Review {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId      String   @db.Uuid
-  productId   String   @db.Uuid
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  productId   String   @db.ObjectId
   comment     String
   createdDate DateTime @default(now())
   product     Product  @relation(fields: [productId], references: [id])
   user        User     @relation(fields: [userId], references: [id])
 }
 
+type Image {
+  id       String
+  imageKey String
+  imageUrl String
+}
+
 model Image_Producto {
-  id         String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String
-  image      String
-  productoId String  @db.Uuid
+  image_url  String
+  productoId String  @db.ObjectId
   product    Product @relation(fields: [productoId], references: [id])
-}
-
-model Subcategory {
-  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name       String
-  category   Category  @relation(fields: [categoryId], references: [id])
-  categoryId String    @db.Uuid
-  products   Product[]
-}
-
-model Category {
-  id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name         String
-  subcategorie Subcategory[]
 }
 
 //https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/many-to-many-relations

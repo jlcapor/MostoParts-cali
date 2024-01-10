@@ -1,4 +1,4 @@
-import getCurrentUser from "@/app/actions/getCurrentUser"
+import getCurrentUser from "@/app/_actions/getCurrentUser"
 import { redirect } from "next/navigation"
 
 export default async function ProtectedAuthLayout({

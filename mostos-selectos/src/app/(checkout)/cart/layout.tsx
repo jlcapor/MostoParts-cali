@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 
-import getCurrentUser from "@/app/actions/getCurrentUser"
-import { SiteHeader } from '@/components/layouts/site-layout/site-header';
+import getCurrentUser from "@/app/_actions/getCurrentUser"
+import { SiteHeader } from '@/components/layouts/SiteHeader';
 
 
 export default async function CartLayout({ children }: React.PropsWithChildren) {

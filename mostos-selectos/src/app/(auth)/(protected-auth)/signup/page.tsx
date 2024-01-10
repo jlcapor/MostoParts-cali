@@ -1,6 +1,6 @@
 import React from 'react'
 import RegisterForm from '../../../../components/forms/auth-form/RegisterForm'
-import { Shell } from '@/components/shells/shell'
+import { Shell } from '@/components/shell'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import { OAuthSignIn } from '@/components/auth/oauth-signin'
@@ -10,7 +10,7 @@ const page = () => {
      <Shell className="max-w-lg">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl ">Crear una cuenta</CardTitle>
+          <CardTitle className="text-2xl text-center uppercase">Crear una cuenta nueva</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
           <OAuthSignIn/>
@@ -20,7 +20,7 @@ const page = () => {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
+                O continua con
               </span>
             </div>
           </div>

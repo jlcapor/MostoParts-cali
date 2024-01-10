@@ -13,9 +13,9 @@ module.exports = {
       },
     },
     extend: {
-      screens: {
-        xs: "480px",
-        xxs: "380px",
+      backgroundImage: {
+        sport:
+          "url('https://uploadthing.com/f/afe0d65b-df4c-4feb-83e0-e3cd00c5a6cb_lindsay-henwood-7_kRuX1hSXM-unsplash-min.jpg')",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,17 +51,23 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        transparent: "rgba(255, 255, 255, 0)",
+        translucentWhite: "rgba(255, 255, 255, 80)",
+        translucentDark: "rgba(25, 33, 58, 0.70)",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
-        heading: ["var(--font-heading)", ...fontFamily.sans],
       },
       keyframes: {
+        "fade-in": {
+          "0%": { opacity: 0.2 },
+          "100%": { opacity: 1 },
+        },
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -70,8 +76,14 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "roll-in-left": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
       animation: {
+        "roll-in-left": "roll-in-left 0.5s ease-out",
+        "fade-in": "fade-in 1.5s ease-in",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

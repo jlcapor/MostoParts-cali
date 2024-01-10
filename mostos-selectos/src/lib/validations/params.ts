@@ -9,4 +9,4 @@ export const searchParamsSchema = z.object({
 export const usersSearchParamsSchema = searchParamsSchema.extend({
     sort: z.string().optional().default("createdAt.desc"),
     email: z.string().optional(),
-  })
+})

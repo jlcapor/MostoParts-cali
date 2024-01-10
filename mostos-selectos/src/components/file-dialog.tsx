@@ -53,9 +53,7 @@ interface FileDialogProps<
 export function FileDialog<TFieldValues extends FieldValues>({
   name,
   setValue,
-  accept = {
-    "image/*": [],
-  },
+  accept = {'image/*' : ['.jpeg', '.png']},
   maxSize = 1024 * 1024 * 2,
   maxFiles = 1,
   files,
