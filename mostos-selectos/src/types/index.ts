@@ -22,7 +22,7 @@ export type ProductImages = {
 
 export type CategoryField = {
   id: string;
-  name: string;
+  title: string;
 };
 
 

@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import React from 'react'
 import NewSubcategoryForm from './NewSubcategoryForm'
 import { Shell } from '@/components/shell'
+import { createSubcategory } from '@/lib/actions/subcategory'
 import { fetchCategories } from '@/lib/data/getCategory'
 
 const NewSubcategoryPage = async() => {
@@ -17,7 +18,7 @@ const NewSubcategoryPage = async() => {
             <CardTitle className="text-2xl">Crear subcategoria</CardTitle>
         </CardHeader>
         <CardContent>
-            <NewSubcategoryForm categories={categories}/>
+            <NewSubcategoryForm categories={categories} createSubcategory={createSubcategory}/>
         </CardContent>
         </Card>
     </Shell>

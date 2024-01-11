@@ -1,17 +1,21 @@
 export interface CategoryData {
-    name?: string;
+    title?: string;
     categoryId?: string
 }
   
 export interface CategoryErrors {
-    name?: string;
+    title?: string;
     categoryId?: string
 }
 
 const validation = (categoryData: CategoryData): CategoryErrors =>{
+
     const errors: CategoryErrors = {};
-    if (!categoryData.name) {
-        errors.name = 'El nombre de la subcategoria es requerido.'
+    if (!categoryData.title) {
+        errors.title = 'El nombre de la subcategoria es requerido.'
+    }
+    if (!categoryData.categoryId) {
+        errors.categoryId = 'Seleccione una categoría.'
     }
 
     return errors;

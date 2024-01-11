@@ -22,6 +22,7 @@ import { DashboardIcon, ExitIcon, GearIcon } from "@radix-ui/react-icons"
 import { Separator } from "../ui/separator";
 import { MenuItems } from "./MenuItems";
 import ProductSearch from "../product-search";
+import { siteConfig } from "@/config/site";
 
 interface SiteHeaderProps {
   currentUser?:SafeUser | null;
@@ -116,7 +117,7 @@ return (
       <Separator className="hidden md:block"/>
       <div className="container  max-w-7xl flex-col gap-5 hidden md:block py-2">
         <div className="flex items-center justify-between space-x-2">
-          <MenuItems />
+          <MenuItems items={siteConfig.mainNav} />
         </div>
       </div>
     </header>

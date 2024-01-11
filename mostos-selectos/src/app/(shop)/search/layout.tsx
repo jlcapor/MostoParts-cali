@@ -2,7 +2,6 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { StoreSidebarNav } from "@/components/layouts/store/StoreSidebarNav"
 import { storeConfig } from "@/config/store"
 import getCurrentUser from "../../_actions/getCurrentUser";
-import { SiteHeader } from "@/components/layouts/SiteHeader";
 
 export default async function StoreLayout({
   children,

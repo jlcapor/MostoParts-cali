@@ -30,17 +30,18 @@ const AddCategoryForm = (props: { createCategory: typeof createCategory }) => {
         description: res?.action,
       });
     });
+    
   };
 
   return (
     <div className="grid w-full  gap-5">
       <form className="flex flex-col gap-6 col-span-1" onSubmit={handleSubmit}>
         <div>
-          <Label htmlFor="category-name">Nombre categoria</Label>
+          <Label htmlFor="category-title">Nombre categoria</Label>
           <Input
             className="mt-2"
-            id="category-name"
-            name="name"
+            id="category-title"
+            name="title"
             type="text"
             placeholder="Escriba el nombre de la categoria."
             value={categoryName}

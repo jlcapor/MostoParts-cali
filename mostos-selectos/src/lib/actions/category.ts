@@ -3,12 +3,11 @@ import prisma from "@/lib/prismadb";
 
 
 
-export async function createCategory(categoryName: string) {
-    console.log(categoryName)
+export async function createCategory(categoryTitle: string) {
     try {
         const existingCategory = await prisma.category.findMany({
             where: { 
-                name: categoryName
+                title: categoryTitle
             },
         });
 
@@ -23,7 +22,7 @@ export async function createCategory(categoryName: string) {
 
         await prisma.category.create({
             data: {
-                name: categoryName as string
+                title: categoryTitle as string
             }
           })
           const res = {
