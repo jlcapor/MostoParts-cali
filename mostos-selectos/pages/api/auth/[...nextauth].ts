@@ -1,9 +1,8 @@
 import bcrypt from "bcrypt"
 import NextAuth, { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import EmailProvider from "next-auth/providers/email"
 import GoogleProvider from "next-auth/providers/google"
-import GitHubProvider from "next-auth/providers/github";
-import FacebookProvider from "next-auth/providers/facebook";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 
 import prisma from "@/lib/prismadb"
@@ -53,6 +52,10 @@ export const authOptions: AuthOptions = {
 
                 return user;
             }
+        }),
+
+        EmailProvider({
+          server: process.env.EMAIL_SERVER,
         })
     ],
     callbacks: {

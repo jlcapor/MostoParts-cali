@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
-import { SiteHeader } from "@/components/layouts/SiteHeader"
-import { SiteFooter } from "@/components/layouts/SiteFooter"
+import { SiteHeader } from "@/components/layouts/site-header"
+import { SiteFooter } from "@/components/layouts/site-footer"
 import getCurrentUser from "@/app/_actions/getCurrentUser"
 
 export default async function AdminLayout({

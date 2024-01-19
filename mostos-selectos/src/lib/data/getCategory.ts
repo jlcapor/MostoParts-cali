@@ -5,7 +5,7 @@ export async function fetchCategories() {
     const categories = await prisma.category.findMany({
         select: { 
             id: true, 
-            title: true 
+            name: true 
         },
     })
     return categories;

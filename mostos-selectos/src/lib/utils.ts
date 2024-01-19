@@ -9,10 +9,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function truncate(str: string, length: number) {
-  return str.length > length ? `${str.substring(0, length)}...` : str
-}
-
 export function slugify(str: string) {
   return str
     .toLowerCase()
@@ -20,6 +16,36 @@ export function slugify(str: string) {
     .replace(/[^\w-]+/g, "")
     .replace(/--+/g, "-")
 }
+
+
+export function unslugify(str: string) {
+  return str.replace(/-/g, " ")
+}
+
+export function toTitleCase(str: string) {
+  return str.replace(
+    /\w\S*/g,
+    (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+  )
+}
+
+export function toSentenceCase(str: string) {
+  return str
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (str) => str.toUpperCase())
+}
+
+export function truncate(str: string, length: number) {
+  return str.length > length ? `${str.substring(0, length)}...` : str
+}
+
+
+export const createUrl = (pathname: string, params: URLSearchParams | ReadonlyURLSearchParams) => {
+  const paramsString = params.toString();
+  const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
+
+  return `${pathname}${queryString}`;
+};
 
 
 export function catchError(err: unknown) {
@@ -35,13 +61,6 @@ export function catchError(err: unknown) {
   }
 }
 
-
-
-export function toSentenceCase(str: string) {
-  return str
-    .replace(/([A-Z])/g, " $1")
-    .replace(/^./, (str) => str.toUpperCase())
-}
 
 
 export function formatBytes(
@@ -66,10 +85,6 @@ export function isArrayOfFile(files: unknown): files is File[] {
 }
 
 
-export const createUrl = (pathname: string, params: URLSearchParams | ReadonlyURLSearchParams) => {
-  const paramsString = params.toString();
-  const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
-  return `${pathname}${queryString}`;
-};
+
 
 

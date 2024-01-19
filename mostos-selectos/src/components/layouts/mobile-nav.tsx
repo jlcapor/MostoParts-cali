@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/config/site"
 import { Accordion } from "../ui/accordion"
+import { Menu } from "lucide-react"
 
 interface MobileNavProps {
     mainNavItems?: MainNavItem[]
@@ -34,11 +35,14 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
           variant="ghost"
           className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
         >
-          <ViewVerticalIcon className="h-6 w-6" aria-hidden="true" />
+          {/* <ViewVerticalIcon className="h-6 w-6" aria-hidden="true" /> */}
+          <div className="p-2 rounded-md border border-border">
+            <Menu className="h-6 w-6"/>
+          </div>
           <span className="sr-only">Toggle Menu</span>
         </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="pl-1 pr-0">
+        <SheetContent  side="left" className="pl-1 pr-0">
         <div className="px-7">
           <Link
             href="/"

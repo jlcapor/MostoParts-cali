@@ -51,7 +51,7 @@ export function AdminTags() {
       <TabsList className="inline-flex items-center justify-center space-x-1.5 text-muted-foreground">
         {tabs.map((tab) => (
           <div
-            role="none"
+            role="none" 
             key={tab.href}
             className={cn(
               "border-b-2 border-transparent py-1.5",
@@ -61,7 +61,7 @@ export function AdminTags() {
             <TabsTrigger
               value={tab.href}
               className={cn(
-                "inline-flex items-center justify-center rounded-sm px-3 py-1.5 text-sm font-semibold text-muted-foreground ring-offset-background transition-all hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
+                "inline-flex items-center justify-center rounded-sm px-3 py-1.5 text-lg font-semibold text-muted-foreground ring-offset-background transition-all hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
                 tab.isActive && "text-foreground"
               )}
             >

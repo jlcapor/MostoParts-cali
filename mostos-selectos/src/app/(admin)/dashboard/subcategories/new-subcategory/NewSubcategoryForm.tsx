@@ -23,12 +23,12 @@ const NewSubcategoryForm: React.FC<NewSubcategoryFormProps> = ({categories, crea
   
   const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState ({
-    title: '',
+    name: '',
     categoryId: ''
   })
 
   const [errors, setErrors] = useState <CategoryErrors | any>({
-    title: 'El nombre de la subcategoria es requerido.',
+    name: 'El nombre de la subcategoria es requerido.',
     categoryId: 'Seleccione una categoría.'
   })
 
@@ -73,7 +73,7 @@ const NewSubcategoryForm: React.FC<NewSubcategoryFormProps> = ({categories, crea
   }
 
   const categoriesOptions = categories.map((category) => (
-		<option key={category.id} value={category.id}>{category.title}</option>
+		<option key={category.id} value={category.id}>{category.name}</option>
 	))
   return (
     <div className="grid w-full  gap-5">
@@ -83,13 +83,13 @@ const NewSubcategoryForm: React.FC<NewSubcategoryFormProps> = ({categories, crea
             <Input
               className="mt-2"
               id="subcategory-name"
-              name="title"
-              value={input.title}
+              name="name"
+              value={input.name}
               onChange={handleChange}
               placeholder="Escriba el nombre de la subcategoria."
             />
             <div className="text-red-500 text-sm mt-1 mx-2">
-							{errors.title && <p>{errors.title}</p>}
+							{errors.name && <p>{errors.name}</p>}
 						</div>
           </div>
 

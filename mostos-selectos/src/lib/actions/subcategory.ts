@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export async function createSubcategory(args: {
-    title: string | null;
+    name: string | null;
     categoryId: string | null
 }) {
     const inputSchema = z.object({
@@ -19,7 +19,7 @@ export async function createSubcategory(args: {
         }
         await prisma.subcategory.create({
             data: {
-                title: args.title as string,
+                name: args.name as string,
                 categoryId: args.categoryId as string
             }
         })

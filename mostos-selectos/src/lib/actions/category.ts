@@ -7,7 +7,7 @@ export async function createCategory(categoryTitle: string) {
     try {
         const existingCategory = await prisma.category.findMany({
             where: { 
-                title: categoryTitle
+                name: categoryTitle
             },
         });
 
@@ -22,7 +22,7 @@ export async function createCategory(categoryTitle: string) {
 
         await prisma.category.create({
             data: {
-                title: categoryTitle as string
+                name: categoryTitle as string
             }
           })
           const res = {

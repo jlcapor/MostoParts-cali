@@ -1,5 +1,4 @@
 import { Icons } from "@/components/icons";
-import { Category } from "@prisma/client";
 import { MixIcon } from "@radix-ui/react-icons";
 
 export const productCategories = [

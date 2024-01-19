@@ -54,14 +54,14 @@ model User {
 
 model Category {
   id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  title         String        @unique
+  name          String        @unique
   subcategories Subcategory[]
   products      Product[]
 }
 
 model Subcategory {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
+  name        String
   description String?
   slug        String?
   category    Category  @relation(fields: [categoryId], references: [id])

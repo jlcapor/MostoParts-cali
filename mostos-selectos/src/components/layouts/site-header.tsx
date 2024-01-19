@@ -15,25 +15,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ShoppingBasket } from "../checkout/shopping-basket"
-import { MainNav } from "@/components/layouts/MainNav";
-import { MobileNav } from "@/components/layouts/MobileNav";
-import { ModeToggle } from "./ModeToggle"
+import { MainNav } from "@/components/layouts/main-nav";
+import { MobileNav } from "@/components/layouts/mobile-nav";
+import { ModeToggle } from "./mode-toggle"
 import { DashboardIcon, ExitIcon, GearIcon } from "@radix-ui/react-icons"
-import { Separator } from "../ui/separator";
-import { MenuItems } from "./MenuItems";
 import ProductSearch from "../product-search";
-import { siteConfig } from "@/config/site";
 
 interface SiteHeaderProps {
   currentUser?:SafeUser | null;
 }
 
 export  function SiteHeader({ currentUser }: SiteHeaderProps) {
-  const initials = `${currentUser?.name?.charAt(0) ?? ""} ${
+const initials = `${currentUser?.name?.charAt(0) ?? ""} ${
     currentUser?.name?.charAt(0) ?? ""
-  }`
+}`
+
 return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
+  <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-20 items-center">
       <MainNav/>
       <MobileNav sidebarNavItems={dashboardConfig.sidebarNav}/>
@@ -114,12 +112,12 @@ return (
           </nav>
         </div>
       </div>
-      <Separator className="hidden md:block"/>
-      <div className="container  max-w-7xl flex-col gap-5 hidden md:block py-2">
+      {/* <Separator className="hidden md:block"/>
+      <ContentWrapper className="flex-col gap-5 hidden md:block  py-2">
         <div className="flex items-center justify-between space-x-2">
           <MenuItems items={siteConfig.mainNav} />
         </div>
-      </div>
+      </ContentWrapper> */}
     </header>
   )
 }
